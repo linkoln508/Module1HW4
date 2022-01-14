@@ -6,6 +6,7 @@ namespace Module1HW4
     {
         public static void Main(string[] args)
         {
+            // Ввожу кол-во Элем. массива и вывожу циклом
             Console.Write("Введите кол-во элементов массива: ");
             int nums = int.Parse(Console.ReadLine());
             int[] randomArray = new int[nums];
@@ -21,46 +22,40 @@ namespace Module1HW4
                 Console.Write(randomArray[i] + "\t");
             }
 
-            // string[] arrayString = new string[nums];
-
-            // for (int i = 0; i < randomArray.Length; i++)
-            // {
-            //    arrayString[i] = randomArray[i].ToString();
-            // }
-
-            // Проверка на кол-во четных\нет элементов
-            int unevenNums = 0;
-            int evenNums = 0;
-
+            // Объявляю счетчики и Считаю кол-во четных\нет чисел
+            int evenNumsCounter = 0;
+            int unNumsCounter = 0;
             for (int i = 0; i < randomArray.Length; i++)
             {
                 if (randomArray[i] % 2 == 0)
                 {
-                    evenNums++;
+                    evenNumsCounter++;
                 }
                 else
                 {
-                    unevenNums++;
+                    unNumsCounter++;
                 }
             }
 
-            int[] evenArray = new int[evenNums];
-            int[] unArray = new int[unevenNums];
-
-            for (int i = 0; i < randomArray; i++)
+            // Объявляю и Сортирую чет\не чет в массивы
+            int[] evenNumsArray = new int[evenNumsCounter];
+            int[] unNumsArray = new int[unNumsCounter];
+            int evenTemp = 0;
+            int unTemp = 0;
+            for (int i = 0; i < randomArray.Length; i++)
             {
-
+                if (randomArray[i] % 2 == 0)
+                {
+                    evenNumsArray[evenTemp] = randomArray[i];
+                    evenTemp++;
+                }
+                else
+                {
+                    unNumsArray[unTemp] = randomArray[i];
+                    unTemp++;
+                }
             }
 
-            foreach (var item in randomArray)
-            {
-                Console.Write("Четный масив: " + item + "\t");
-            }
-
-            foreach (var item in randomArray)
-            {
-                Console.Write("Нечетный масив: " + item + "\t");
-            }
         }
     }
 }
