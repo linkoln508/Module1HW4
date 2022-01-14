@@ -1,9 +1,41 @@
 ﻿using System;
+using System.Text;
 
 namespace Module1HW4
 {
     public class Program
     {
+        private static int oddUpperCount = 0;
+        private static int evenUpperCount = 0;
+
+        public static char[] IntConvertToString(int[] arr)
+        {
+            char[] strArr = new char[arr.Length];
+            int alphabetStartIndex = 'a' - 1;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                char letter = Convert.ToChar(alphabetStartIndex + arr[i]);
+
+                if (letter == 'a' || letter == 'e' || letter == 'i' || letter == 'd' || letter == 'h' || letter == 'j')
+                {
+                    if (arr[i] % 2 == 0)
+                    {
+                        evenUpperCount++;
+                    }
+                    else
+                    {
+                        oddUpperCount++;
+                    }
+
+                    letter = char.ToUpper(letter);
+                }
+
+                strArr[i] = letter;
+            }
+
+            return strArr;
+        }
+
         public static void Main(string[] args)
         {
             // Ввожу кол-во Элем. массива и вывожу циклом
@@ -22,9 +54,9 @@ namespace Module1HW4
                 Console.Write(randomArray[i] + "\t");
             }
 
-            // Объявляю счетчики и Считаю кол-во четных\нет чисел
+            // Объявляю счетчики и Считаю кол-во чет\нет чисел
             int evenNumsCounter = 0;
-            int unNumsCounter = 0;
+            int oddNumsCounter = 0;
             for (int i = 0; i < randomArray.Length; i++)
             {
                 if (randomArray[i] % 2 == 0)
@@ -33,15 +65,15 @@ namespace Module1HW4
                 }
                 else
                 {
-                    unNumsCounter++;
+                    oddNumsCounter++;
                 }
             }
 
-            // Объявляю и Сортирую чет\не чет в массивы
+            // Объявляю и Сортирую чет\нет в массивы
             int[] evenNumsArray = new int[evenNumsCounter];
-            int[] unNumsArray = new int[unNumsCounter];
+            int[] oddNumsArray = new int[oddNumsCounter];
             int evenTemp = 0;
-            int unTemp = 0;
+            int oddTemp = 0;
             for (int i = 0; i < randomArray.Length; i++)
             {
                 if (randomArray[i] % 2 == 0)
@@ -51,11 +83,35 @@ namespace Module1HW4
                 }
                 else
                 {
-                    unNumsArray[unTemp] = randomArray[i];
-                    unTemp++;
+                    oddNumsArray[oddTemp] = randomArray[i];
+                    oddTemp++;
                 }
             }
 
+            // Создаю Алфавитный Массив. Привожу массивы к string. Узнаю индекс и меняю по индексу на Букву.
+            var evenAlphabet = IntConvertToString(evenNumsArray);
+            var oddAlphabet = IntConvertToString(oddNumsArray);
+
+            Console.WriteLine();
+
+            if (oddUpperCount > evenUpperCount)
+            {
+                Console.WriteLine($"В нечётном массиве на {oddUpperCount - evenUpperCount} больше заглавных букв, чем в чётном");
+            }
+            else if (oddUpperCount < evenUpperCount)
+            {
+                Console.WriteLine($"В чётном массиве на {evenUpperCount - oddUpperCount} больше заглавных букв, чем в нечётном");
+            }
+            else
+            {
+                Console.WriteLine($"В чётном массиве {evenUpperCount} заглавных букв, как и в нечётном");
+            }
+
+            Console.WriteLine("Чётный");
+            Console.WriteLine(string.Join(' ', evenAlphabet));
+
+            Console.WriteLine("Нечётный");
+            Console.WriteLine(string.Join(' ', oddAlphabet));
         }
     }
 }
