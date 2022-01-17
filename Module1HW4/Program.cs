@@ -8,6 +8,8 @@ namespace Module1HW4
         private static int oddUpperCount = 0;
         private static int evenUpperCount = 0;
 
+        // Метод конвертирования int в char. Получаю номер символа "a" для начала заполнения массива символами ASCII. Сверяю с символами для верхнего регистра и присваиваю в массив.
+        // Считаю Кол-во символов приведенных к верхнему Регистру. Возвращаю Массив char.
         public static char[] IntConvertToString(int[] arr)
         {
             char[] strArr = new char[arr.Length];
@@ -88,7 +90,6 @@ namespace Module1HW4
                 }
             }
 
-            // Создаю Алфавитный Массив. Привожу массивы к string. Узнаю индекс и меняю по индексу на Букву.
             var evenAlphabet = IntConvertToString(evenNumsArray);
             var oddAlphabet = IntConvertToString(oddNumsArray);
 
